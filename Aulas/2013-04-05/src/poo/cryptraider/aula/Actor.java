@@ -2,18 +2,24 @@ package poo.cryptraider.aula;
 
 public abstract class Actor {
 	private char _c;
-	private int _row;
-	private int _col;
+	protected Point _pos;
+	protected Point _direction;
 	
-	public Actor(char c, int row, int col) {
+	protected CryptRaider _game;
+	
+	
+	public Actor(char c, Point pos, CryptRaider game) {
 		_c = c;
-		_col = col;
-		_row = row;
+		_game = game;
+		_pos = pos;
+		_direction = new Point(0,0);
 	}
 	
 	public char getChar() {
 		return _c;
 	}
+	
+	public Point getPosition() { return _pos; }
 	
 	public void move(char key) { }
 

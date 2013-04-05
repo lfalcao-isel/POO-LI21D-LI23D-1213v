@@ -3,6 +3,11 @@ package poo.cryptraider.aula;
 import java.util.Scanner;
 
 public class CryptRaider {
+	public static final char UP = 'w';
+	public static final char DOWN = 's';
+	public static final char LEFT = 'a';
+	public static final char RIGHT = 'd';
+	
 	private String[] _level = {
 			"##################", 
 			"#    $#          #",
@@ -39,26 +44,16 @@ public class CryptRaider {
 	
 	private Actor createActor(char c, int row, int col) {
 		switch(c) {
-			case '#': return new Wall(c, row, col); 
-			case '$': return new Stone(c, row, col);
-			case ' ': return new Space(c, row, col);
-			case 'C': return new Carter(c, row, col);
-			case 'A': return new Artifact(c, row, col);
-			case '*': return new Sand(c, row, col); 
-			case 'P': return new Portal(c, row, col); 
+			case '#': return new Wall(c, new Point(row, col), this); 
+			case '$': return new Stone(c, new Point(row, col), this);
+			case ' ': return new Space(c, new Point(row, col), this);
+			case 'C': return new Carter(c, new Point(row, col), this);
+			case 'A': return new Artifact(c, new Point(row, col), this);
+			case '*': return new Sand(c, new Point(row, col), this); 
+			case 'P': return new Portal(c, new Point(row, col), this); 
 		}
 		
 		return null;
-	}
-
-	public void start() {
-		loadLevel();
-		
-		while(true) {
-			showBoard();
-			char c = readKey();
-			moveActors(c);
-		}
 	}
 
 	private void moveActors(char c) {
@@ -88,6 +83,25 @@ public class CryptRaider {
 		
 	}
 
+	
+	public boolean canMoveTo(Actor a) {
+		return false;
+	}
+
+	public void start() {
+		loadLevel();
+		
+		while(true) {
+			showBoard();
+			char c = readKey();
+			moveActors(c);
+		}
+	}
+
+	public void moveTo(Carter carter) {
+		
+		
+	}
 
 
 

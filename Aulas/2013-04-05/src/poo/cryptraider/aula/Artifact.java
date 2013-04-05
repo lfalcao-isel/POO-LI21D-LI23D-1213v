@@ -2,8 +2,8 @@ package poo.cryptraider.aula;
 
 public class Artifact extends Actor {
 
-	public Artifact(char c, int row, int col) {
-		super(c, row, col);
+	public Artifact(char c, Point pos, CryptRaider game) {
+		super(c, pos, game);
 	}
 
 }

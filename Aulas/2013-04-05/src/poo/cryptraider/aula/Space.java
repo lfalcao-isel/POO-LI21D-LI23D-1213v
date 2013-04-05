@@ -2,8 +2,8 @@ package poo.cryptraider.aula;
 
 public class Space extends Actor {
 
-	public Space(char c, int row, int col) {
-		super(c, row, col);
+	public Space(char c, Point pos, CryptRaider game) {
+		super(c, pos, game);
 	}
 
 }
