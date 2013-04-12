@@ -1,4 +1,8 @@
-package poo.cryptraider.aula;
+package poo.cryptraider.actors;
+
+import poo.cryptraider.CryptRaider;
+import poo.cryptraider.Point;
+import poo.cryptraider.actors.Actor;
 
 public class Wall extends Actor {
 

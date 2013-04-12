@@ -1,4 +1,7 @@
-package poo.cryptraider.aula;
+package poo.cryptraider.actors;
+
+import poo.cryptraider.CryptRaider;
+import poo.cryptraider.Point;
 
 public abstract class MovableActor extends Actor {
 

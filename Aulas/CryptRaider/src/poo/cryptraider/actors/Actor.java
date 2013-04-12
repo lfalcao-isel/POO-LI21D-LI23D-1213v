@@ -1,4 +1,7 @@
-package poo.cryptraider.aula;
+package poo.cryptraider.actors;
+
+import poo.cryptraider.CryptRaider;
+import poo.cryptraider.Point;
 
 public abstract class Actor {
 	private char _c;
@@ -37,5 +40,19 @@ public abstract class Actor {
 
 	public Point getPreviousPosition() {
 		return _pos.add(_direction.invert());
+	}
+
+	public static Actor createActor(char c, int row, int col, CryptRaider g) {
+		switch(c) {
+			case '#': return new Wall(c, new Point(row, col), g); 
+			case '$': return new Stone(c, new Point(row, col), g);
+			case ' ': return new Space(c, new Point(row, col), g);
+			case 'C': return new Carter(c, new Point(row, col), g);
+			case 'A': return new Artifact(c, new Point(row, col), g);
+			case '*': return new Sand(c, new Point(row, col), g); 
+			case 'P': return new Portal(c, new Point(row, col), g); 
+		}
+		
+		return null;
 	}
 }

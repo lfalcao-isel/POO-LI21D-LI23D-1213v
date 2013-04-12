@@ -1,4 +1,4 @@
-package poo.cryptraider.aula;
+package poo.cryptraider;
 
 public class Point {
 	private int _row;
@@ -26,6 +26,16 @@ public class Point {
 		_row = -_row;
 		_col = -_col;
 		return this;
+	}
+	
+	@Override
+	public boolean equals(Object o)  {
+		if(o instanceof Point == false)
+			return false;
+		Point that = (Point)o;
+		
+		return _row == that._row && _col == that._col;
+		
 	}
 	
 }

@@ -1,4 +1,6 @@
-package poo.cryptraider.aula;
+package poo.cryptraider;
+
+import poo.cryptraider.levels.Level1;
 
 public class CryptRaiderGameApp {
 
@@ -7,7 +9,9 @@ public class CryptRaiderGameApp {
 	 */
 	public static void main(String[] args) {
 		CryptRaider c = new CryptRaider();
-		c.start();
+		c.start(new Level1());
+		//c.start(new RaiderArtifaColisionLevel());
+		
 
 	}
 
