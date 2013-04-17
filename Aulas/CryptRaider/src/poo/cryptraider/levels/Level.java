@@ -3,6 +3,7 @@ package poo.cryptraider.levels;
 import poo.cryptraider.Board;
 import poo.cryptraider.CryptRaider;
 import poo.cryptraider.actors.Actor;
+import poo.cryptraider.exceptions.InvalidCharActorException;
 
 public abstract class Level {
 	
@@ -25,10 +26,16 @@ public abstract class Level {
 			String rowStr = levelStrs[row]; 
 			for(int col = 0; col < width; ++ col) {
 				char c = rowStr.charAt(col);
-				actors[row][col] = Actor.createActor(c, row, col, game);
+				
+				try {
+					actors[row][col] = Actor.createActor(c, row, col, game);
+				} catch (InvalidCharActorException e) {
+					System.out.println(e.toString() + ". Creating a Wall instead at row " + row + " - col " + col);
+					//e.printStackTrace();
+					actors[row][col] = Actor.createActor('#', row, col, game);
+				}
 			}
 		}
-		
 		return actors;
 	}
 }
