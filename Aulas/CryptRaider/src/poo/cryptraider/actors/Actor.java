@@ -31,7 +31,9 @@ public abstract class Actor {
 		System.out.print(_c);
 	}
 
-	public abstract void colide(Actor a);
+	public boolean colide(Actor a) {
+		return false;
+	}
 
 	public void moveToPreviousPosition() {
 		_pos = _pos.add(_direction.invert());
@@ -54,5 +56,9 @@ public abstract class Actor {
 		}
 		
 		return null;
+	}
+
+	public void setPosition(Point newPos) {
+		_pos = newPos;
 	}
 }

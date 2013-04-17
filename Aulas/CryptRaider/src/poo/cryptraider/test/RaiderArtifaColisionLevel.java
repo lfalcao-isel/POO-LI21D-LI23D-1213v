@@ -1,19 +1,16 @@
 package poo.cryptraider.test;
 
-import poo.cryptraider.Board;
-import poo.cryptraider.CryptRaider;
 import poo.cryptraider.levels.Level;
 
 public class RaiderArtifaColisionLevel extends Level {
 
 	@Override
-	public Board getBoard(CryptRaider game) {
+	protected String[] getLevel() {
 		
-		return getBoard(new String[] {
+		return new String[] {
 				"######", 
 				"# CA #",
-				"######" },
-			game);
+				"######" };
 	}
 
 }

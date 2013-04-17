@@ -10,11 +10,13 @@ public class Sand extends Actor {
 	}
 
 	@Override
-	public void colide(Actor a) {
-		_game.putActorInBoard(a);
+	public boolean colide(Actor a) {
+		if(a instanceof Carter) {
+			_game.putActorInBoard(new Space(' ', _pos, _game));
+			return true;
+		}
 		
-		_game.putActorInBoard(new Space(' ', a.getPreviousPosition(), _game));
-		
+		return false;
 	}
 
 }

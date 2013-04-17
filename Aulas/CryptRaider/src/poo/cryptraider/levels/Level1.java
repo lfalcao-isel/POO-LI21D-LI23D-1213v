@@ -1,19 +1,16 @@
 package poo.cryptraider.levels;
 
-import poo.cryptraider.Board;
-import poo.cryptraider.CryptRaider;
-import poo.cryptraider.actors.Actor;
 
 public class Level1 extends Level {
 
 	@Override
-	public Board getBoard(CryptRaider game) {
-		String levelStr[] =  new String[] {
+	protected String[] getLevel() {
+		return new String[] {
 			"##################", 
 			"#    $#          #",
-			"#    $# ***A**** #", 
+			"#    $#C***A**** #", 
 			"#    $# ******** #", 
-			"# C  $#          #",
+			"#    $#          #",
 			"#$$$ $# #### ### #", 
 			"#### ##    #P#   #", 
 			"#  # #     ###   #",
@@ -22,7 +19,5 @@ public class Level1 extends Level {
 			"#****************#",
 			"##################"
 		};
-		
-		return getBoard(levelStr, game);
 	}
 }

@@ -25,7 +25,7 @@ public class CryptRaider {
 	Scanner _input = new Scanner(System.in);
 	
 	public void loadLevel(Level level) {
-		_board = level.getBoard();
+		_board = level.getBoard(this);
 	}
 	
 	
@@ -38,46 +38,35 @@ public class CryptRaider {
 		return _input.next().charAt(0);
 	}
 
-	private void showBoard() {
-		for(int row = 0; row < _actorsBoard.length; ++ row) {
-			for(int col = 0; col < _actorsBoard[0].length; ++ col) {
-				//System.out.print(_board[row][col].getChar());
-				_actorsBoard[row][col].show();
-			}
-			System.out.println();
-		}
-		
-		System.out.println();
-		
-	}
-
+	
 	
 	public void start(Level level) {
 		loadLevel(level);
 		
 		while(true) {
-			showBoard();
+			_board.showBoard();
 			char c = readKey();
 			moveActors(c);
 		}
 	}
 
-	public void moveTo(Actor a) {
-		Point p = a.getPosition();
-		Actor colidedActor = getActor(p);
-		colidedActor.colide(a);
+	public boolean moveTo(Actor a, Point pos) {
+		Actor colidedActor = _board.getActor(pos);
+		return colidedActor.colide(a);
 	}
 	
 	
 
-	public void putActorInBoard(Actor a) {
-		Point p = a.getPosition();
-		_actorsBoard[p.getRow()][p.getCol()] = a;
+	public void changeActor(Actor a, Point pos) {
+		_board.changeActor(a, pos);
 		
 	}
-	
-	public Actor getActor(Point p) {
-		return _actorsBoard[p.getRow()][p.getCol()];
+
+	public void putActorInBoard(Actor a) {
+		_board.putActorInBoard(a);
 	}
 
+	public Actor getActor(Point pos) {
+		return _board.getActor(pos);
+	}
 }

@@ -6,9 +6,10 @@ import poo.cryptraider.actors.Actor;
 
 public abstract class Level {
 	
-	protected abstract Board getBoard(CryptRaider game);
+	protected abstract String[] getLevel();
 	
-	protected Board getBoard(String[] levelStr, CryptRaider game) {
+	public Board getBoard(CryptRaider game) {
+		String[] levelStr = getLevel();
 		Actor[][] actors = getActors(levelStr, game);
 		Board b = new Board(actors);
 		return b;
@@ -29,8 +30,5 @@ public abstract class Level {
 		}
 		
 		return actors;
-
 	}
-
-	
 }

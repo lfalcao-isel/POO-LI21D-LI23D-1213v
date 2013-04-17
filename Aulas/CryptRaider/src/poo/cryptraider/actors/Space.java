@@ -10,11 +10,7 @@ public class Space extends Actor {
 	}
 
 	@Override
-	public void colide(Actor a) {
-		_game.putActorInBoard(a);
-		
-		_pos = a.getPreviousPosition();
-		_game.putActorInBoard(this);
+	public boolean colide(Actor a) {
+		return true;
 	}
-
 }

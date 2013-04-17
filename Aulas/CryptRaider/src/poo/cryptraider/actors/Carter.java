@@ -14,20 +14,15 @@ public class Carter extends MovableActor {
 	@Override
 	public void move(char key) {
 		switch(key) {
-			case CryptRaider.UP : _direction = new Point(-1,0); break;
-			case CryptRaider.DOWN : _direction = new Point(1,0); break;
-			case CryptRaider.LEFT : _direction = new Point(0,-1); break;
-			case CryptRaider.RIGHT : _direction = new Point(0,1); break;
+			case CryptRaider.UP : _direction = UP_DIR; break;
+			case CryptRaider.DOWN : _direction = DOWN_DIR; break;
+			case CryptRaider.LEFT : _direction = LEFT_DIR; break;
+			case CryptRaider.RIGHT : _direction = RIGHT_DIR; break;
+			default: _direction = NO_DIR;
 		}
-		
-		_pos = _pos.add(_direction);
-		
-		_game.moveTo(this);
-	}
 
-	@Override
-	public void colide(Actor a) {
-		
+		Point pos = _pos.add(_direction);
+		if(_game.moveTo(this, pos))
+			_game.changeActor(this, pos);
 	}
-	
 }
