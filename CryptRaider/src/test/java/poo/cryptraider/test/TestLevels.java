@@ -12,7 +12,7 @@ import poo.cryptraider.actors.Carter;
 
 public class TestLevels {
 
-	@Test
+	//@Test
 	public void shouldMovecarterAndArtifact() {
 		// Arrange
 		CryptRaider c = new CryptRaider();
