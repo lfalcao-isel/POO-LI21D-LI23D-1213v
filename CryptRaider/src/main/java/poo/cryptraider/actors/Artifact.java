@@ -13,6 +13,21 @@ public class Artifact extends MovableActor {
 	@Override
 	public void move(char key) {
 		Point pos = _pos.add(_direction);
+		if(_game.moveTo(this, pos))
+			_game.changeActor(this, pos);
+		
+		
+	}
+	
+	@Override
+	public boolean colide(Actor a) {
+		if(a instanceof Carter) {
+			Point pos = _pos.add(a._direction);
+			if(_game.moveTo(this, pos))
+				_game.changeActor(this, pos);
+			return true;
+		}
+		return false;
 		
 		
 	}
