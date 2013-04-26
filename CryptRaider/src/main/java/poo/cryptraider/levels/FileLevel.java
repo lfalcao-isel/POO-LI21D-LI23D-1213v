@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import poo.cryptraider.exceptions.CryptRaiderException;
+import poo.cryptraider.exceptions.LoadLevelException;
+
 public class FileLevel extends Level {
 
 	private String _filePath;
@@ -13,10 +16,12 @@ public class FileLevel extends Level {
 		_filePath = filePath;
 	}
 	
-	@Override
-	protected String[] getLevel() {
+	//@Override
+	protected String[] getLevel() throws CryptRaiderException {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(_filePath));
+			BufferedReader reader = new BufferedReader(
+				new FileReader(_filePath)
+			);
 			
 			String line = reader.readLine();
 			int numlines = Integer.parseInt(line);
@@ -28,15 +33,9 @@ public class FileLevel extends Level {
 			
 			return lines;
 			
-		} catch (FileNotFoundException e) {
-			// VERY, VERY IMPORTANT: CHANGE THIS CODE!!!!
-			e.printStackTrace();
 		} catch (IOException e) {
-			// VERY, VERY IMPORTANT: CHANGE THIS CODE!!!!
-			e.printStackTrace();
+			throw new LoadLevelException("Eroor loading level", e);
 		}
-		return null;
-		
 	}
 
 }

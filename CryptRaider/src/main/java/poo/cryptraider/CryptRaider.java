@@ -11,6 +11,8 @@ import poo.cryptraider.actors.Sand;
 import poo.cryptraider.actors.Space;
 import poo.cryptraider.actors.Stone;
 import poo.cryptraider.actors.Wall;
+import poo.cryptraider.exceptions.CryptRaiderException;
+import poo.cryptraider.exceptions.LoadLevelException;
 import poo.cryptraider.levels.Level;
 
 public class CryptRaider {
@@ -24,7 +26,7 @@ public class CryptRaider {
 	
 	Scanner _input = new Scanner(System.in);
 	
-	public void loadLevel(Level level) {
+	public void loadLevel(Level level) throws CryptRaiderException  {
 		_board = level.getBoard(this);
 	}
 	
@@ -40,7 +42,7 @@ public class CryptRaider {
 
 	
 	
-	public void start(Level level) {
+	public void start(Level level) throws CryptRaiderException  {
 		loadLevel(level);
 		
 		while(true) {

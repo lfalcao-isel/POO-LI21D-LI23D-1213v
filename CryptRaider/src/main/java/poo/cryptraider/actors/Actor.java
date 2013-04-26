@@ -45,7 +45,9 @@ public abstract class Actor {
 		return _pos.add(_direction.invert());
 	}
 
-	public static Actor createActor(char c, int row, int col, CryptRaider g) {
+	public static Actor createActor(char c, int row, int col, CryptRaider g) 
+		throws InvalidCharActorException
+	{
 		switch(c) {
 			case '#': return new Wall(c, new Point(row, col), g); 
 			case '$': return new Stone(c, new Point(row, col), g);

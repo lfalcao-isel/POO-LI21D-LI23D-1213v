@@ -3,13 +3,15 @@ package poo.cryptraider.levels;
 import poo.cryptraider.Board;
 import poo.cryptraider.CryptRaider;
 import poo.cryptraider.actors.Actor;
+import poo.cryptraider.exceptions.CryptRaiderException;
 import poo.cryptraider.exceptions.InvalidCharActorException;
+import poo.cryptraider.exceptions.LoadLevelException;
 
 public abstract class Level {
 	
-	protected abstract String[] getLevel();
+	protected abstract String[] getLevel() throws CryptRaiderException;
 	
-	public Board getBoard(CryptRaider game) {
+	public Board getBoard(CryptRaider game) throws CryptRaiderException {
 		String[] levelStr = getLevel();
 		Actor[][] actors = getActors(levelStr, game);
 		Board b = new Board(actors);
@@ -17,7 +19,7 @@ public abstract class Level {
 
 	}
 	
-	private Actor[][] getActors(String[] levelStrs, CryptRaider game) {
+	private Actor[][] getActors(String[] levelStrs, CryptRaider game) throws InvalidCharActorException {
 		int width = levelStrs[0].length();
 		Actor[][] actors = new Actor[levelStrs.length][width];
 		
