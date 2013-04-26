@@ -2,10 +2,13 @@ package poo.cryptraider;
 
 import poo.cryptraider.actors.Actor;
 import poo.cryptraider.actors.MovableActor;
+import poo.cryptraider.viewers.Viewer;
 
 public class Board {
 	Actor[][] _actorsBoard;
 	MovableActor[] _movableActors;
+	private Viewer[] _viewers = new Viewer[10];
+	private int _numViewers = 0;
 	
 	private int getMovablesNumber(Actor[][] actors) {
 		int movables = 0;
@@ -42,16 +45,9 @@ public class Board {
 	}
 	
 	public void showBoard() {
-		for(int row = 0; row < _actorsBoard.length; ++ row) {
-			for(int col = 0; col < _actorsBoard[0].length; ++ col) {
-				//System.out.print(_board[row][col].getChar());
-				_actorsBoard[row][col].show();
-			}
-			System.out.println();
+		for(int i = 0; i < _numViewers; ++i) {
+			_viewers[i].show(this);
 		}
-		
-		System.out.println();
-		
 	}
 
 
@@ -86,5 +82,24 @@ public class Board {
 	public void putActorInBoard(Actor a) {
 		Point pos = a.getPosition();
 		_actorsBoard[pos.getRow()][pos.getCol()] = a;
+	}
+
+
+
+
+	public int getWidth() {
+		return _actorsBoard[0].length;
+	}
+
+
+	public int getHeigh() {
+		return _actorsBoard.length;
+	}
+
+
+	public void addViewers(Viewer[] viewers) {
+		for(int i = 0; i < viewers.length; ++i) {
+			_viewers[_numViewers++] = viewers[i];
+		}
 	}
 }

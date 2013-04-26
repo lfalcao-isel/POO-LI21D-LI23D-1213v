@@ -9,11 +9,12 @@ import poo.cryptraider.Point;
 import poo.cryptraider.actors.Actor;
 import poo.cryptraider.actors.Artifact;
 import poo.cryptraider.actors.Carter;
+import poo.cryptraider.exceptions.CryptRaiderException;
 
 public class TestLevels {
 
-	//@Test
-	public void shouldMovecarterAndArtifact() {
+	@Test
+	public void shouldMovecarterAndArtifact() throws CryptRaiderException {
 		// Arrange
 		CryptRaider c = new CryptRaider();
 		c.loadLevel(new RaiderArtifaColisionLevel());

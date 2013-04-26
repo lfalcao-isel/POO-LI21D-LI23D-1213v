@@ -14,6 +14,8 @@ import poo.cryptraider.actors.Wall;
 import poo.cryptraider.exceptions.CryptRaiderException;
 import poo.cryptraider.exceptions.LoadLevelException;
 import poo.cryptraider.levels.Level;
+import poo.cryptraider.viewers.ConsoleViewer;
+import poo.cryptraider.viewers.Viewer;
 
 public class CryptRaider {
 	public static final char UP = 'w';
@@ -42,8 +44,9 @@ public class CryptRaider {
 
 	
 	
-	public void start(Level level) throws CryptRaiderException  {
+	public void start(Level level, Viewer... viewers) throws CryptRaiderException  {
 		loadLevel(level);
+		_board.addViewers(viewers);
 		
 		while(true) {
 			_board.showBoard();
@@ -71,4 +74,5 @@ public class CryptRaider {
 	public Actor getActor(Point pos) {
 		return _board.getActor(pos);
 	}
+
 }
