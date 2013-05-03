@@ -2,6 +2,8 @@ package poo.cryptraider.test;
 
 import junit.framework.Assert;
 
+import static junit.framework.Assert.*;
+
 import org.junit.Test;
 
 import poo.cryptraider.CryptRaider;

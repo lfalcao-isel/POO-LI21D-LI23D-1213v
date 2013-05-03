@@ -5,6 +5,7 @@ import java.io.File;
 import poo.cryptraider.exceptions.CryptRaiderException;
 import poo.cryptraider.levels.FileLevel;
 import poo.cryptraider.viewers.ConsoleViewer;
+import poo.cryptraider.viewers.CrypraiderSwingViewer;
 import poo.cryptraider.viewers.Viewer;
 
 public class CryptRaiderGameApp {
@@ -19,9 +20,9 @@ public class CryptRaiderGameApp {
 		//c.start(new Level1());
 		String absPath = new File("").getAbsolutePath();
 		System.out.println(absPath);
-		absPath = ClassLoader.getSystemResource("levels/Level1.txt").getPath().substring(1);
+		absPath = FileSystemResourceManager.getResource("levels/Level1.txt"); 
 		System.out.println(absPath);
-		c.start(new FileLevel(absPath), new ConsoleViewer());
+		c.start(new FileLevel(absPath), new ConsoleViewer(), new CrypraiderSwingViewer());
 		
 		
 		

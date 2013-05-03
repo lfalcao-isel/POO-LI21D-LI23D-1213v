@@ -62,8 +62,13 @@ public class Board {
 	}
 	
 	public Actor getActor(Point p) {
-		return _actorsBoard[p.getRow()][p.getCol()];
+		return getActor(p.getRow(), p.getCol());
 	}
+	
+	public Actor getActor(int row, int col) {
+		return _actorsBoard[row][col];
+	}
+
 
 
 	public void changeActor(Actor a, Point pos) {
@@ -102,4 +107,6 @@ public class Board {
 			_viewers[_numViewers++] = viewers[i];
 		}
 	}
+
+
 }
