@@ -24,6 +24,7 @@ public class CryptRaider {
 	public static final char RIGHT = 'd';
 
 	Board _board;
+	String _keys = "";
 	
 	
 	Scanner _input = new Scanner(System.in);
@@ -34,8 +35,8 @@ public class CryptRaider {
 	
 	
 
-	public void moveActors(char c) {
-		_board.moveActors(c);
+	public void moveActors() {
+		_board.moveActors();
 	}
 
 	private char readKey() {
@@ -50,10 +51,20 @@ public class CryptRaider {
 		
 		while(true) {
 			_board.showBoard();
-			char c = readKey();
-			moveActors(c);
+			moveActors();
+			waitForNextFrame(1000/30);
 		}
 	}
+
+	private void waitForNextFrame(int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			System.exit(-1);
+		}
+	}
+
+
 
 	public boolean moveTo(Actor a, Point pos) {
 		Actor colidedActor = _board.getActor(pos);
@@ -73,6 +84,23 @@ public class CryptRaider {
 
 	public Actor getActor(Point pos) {
 		return _board.getActor(pos);
+	}
+
+
+
+	public void addKey(char key) {
+		_keys += key;
+		
+	}
+
+
+
+	public char getKey() {
+		if(_keys.length() == 0)
+			return 0;
+		char key = _keys.charAt(0);
+		_keys = _keys.substring(1);
+		return key;
 	}
 
 }

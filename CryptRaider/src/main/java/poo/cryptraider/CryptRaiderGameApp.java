@@ -22,7 +22,7 @@ public class CryptRaiderGameApp {
 		System.out.println(absPath);
 		absPath = FileSystemResourceManager.getResource("levels/Level1.txt"); 
 		System.out.println(absPath);
-		c.start(new FileLevel(absPath), new ConsoleViewer(), new CrypraiderSwingViewer());
+		c.start(new FileLevel(absPath), new ConsoleViewer(), new CrypraiderSwingViewer(c));
 		
 		
 		

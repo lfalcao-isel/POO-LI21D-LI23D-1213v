@@ -15,5 +15,5 @@ public abstract class MovableActor extends Actor {
 		super(c, pos, game);
 	}
 
-	public abstract void move(char key);
+	public abstract void move();
 }

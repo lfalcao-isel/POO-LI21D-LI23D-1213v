@@ -11,7 +11,7 @@ public class Artifact extends MovableActor {
 	}
 
 	@Override
-	public void move(char key) {
+	public void move() {
 		Point pos = _pos.add(_direction);
 		if(_game.moveTo(this, pos))
 			_game.changeActor(this, pos);

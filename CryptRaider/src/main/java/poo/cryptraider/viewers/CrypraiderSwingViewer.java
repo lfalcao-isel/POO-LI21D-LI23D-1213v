@@ -1,6 +1,8 @@
 package poo.cryptraider.viewers;
 
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -8,11 +10,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import poo.cryptraider.Board;
+import poo.cryptraider.CryptRaider;
 import poo.cryptraider.FileSystemResourceManager;
 import poo.cryptraider.actors.Actor;
 
-public class CrypraiderSwingViewer extends JFrame implements Viewer {
+public class CrypraiderSwingViewer extends JFrame implements Viewer, KeyListener {
 
+	private CryptRaider _game;
+
+	public CrypraiderSwingViewer(CryptRaider game) {
+		_game = game;
+	}
 	
 	@Override
 	public void show(Board b) {
@@ -38,6 +46,8 @@ public class CrypraiderSwingViewer extends JFrame implements Viewer {
 		pack();
 		setVisible(true);
 		
+		addKeyListener(this);
+		
 	}
 
 	private Icon getActorIcon(Actor actor) {
@@ -49,6 +59,24 @@ public class CrypraiderSwingViewer extends JFrame implements Viewer {
 		
 		
 		return imageIcon;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent event) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent event) {
+		char key = event.getKeyChar();
+		_game.addKey(key);
+		
 	}
 
 }

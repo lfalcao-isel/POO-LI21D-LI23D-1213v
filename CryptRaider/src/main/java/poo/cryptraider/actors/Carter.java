@@ -12,7 +12,8 @@ public class Carter extends MovableActor {
 	}
 
 	@Override
-	public void move(char key) {
+	public void move() {
+		char key = _game.getKey();
 		switch(key) {
 			case CryptRaider.UP : _direction = UP_DIR; break;
 			case CryptRaider.DOWN : _direction = DOWN_DIR; break;

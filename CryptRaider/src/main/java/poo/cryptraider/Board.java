@@ -55,9 +55,9 @@ public class Board {
 	
 
 
-	public void moveActors(char c) {
+	public void moveActors() {
 		for(int i = 0; i < _movableActors.length; ++ i) {
-			_movableActors[i].move(c);
+			_movableActors[i].move();
 		}
 	}
 	
