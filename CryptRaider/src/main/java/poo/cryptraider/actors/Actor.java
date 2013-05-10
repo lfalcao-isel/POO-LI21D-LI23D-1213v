@@ -56,6 +56,7 @@ public abstract class Actor {
 			case 'A': return new Artifact(c, new Point(row, col), g);
 			case '*': return new Sand(c, new Point(row, col), g); 
 			case 'P': return new Portal(c, new Point(row, col), g);
+			case 'B': return new Bug(c, new Point(row, col), g);
 			default:
 				throw new InvalidCharActorException("Invalid char for actor: " +  c);
 		}

@@ -12,20 +12,21 @@ import javax.swing.JLabel;
 import poo.cryptraider.Board;
 import poo.cryptraider.CryptRaider;
 import poo.cryptraider.FileSystemResourceManager;
+import poo.cryptraider.Point;
 import poo.cryptraider.actors.Actor;
 
 public class CrypraiderSwingViewer extends JFrame implements Viewer, KeyListener {
 
 	private CryptRaider _game;
+	private int _boardWidth;
 
 	public CrypraiderSwingViewer(CryptRaider game) {
 		_game = game;
 	}
 	
-	@Override
-	public void show(Board b) {
+	public void initLevel(Board b) {
 		int rows = b.getHeigh();
-		int cols = b.getWidth();
+		int cols = _boardWidth = b.getWidth();
 		
 		
 		setTitle("Cryptraider Glorioso!");
@@ -41,12 +42,27 @@ public class CrypraiderSwingViewer extends JFrame implements Viewer, KeyListener
 			}
 		}
 		
-		
 		setResizable(false);
 		pack();
 		setVisible(true);
 		
 		addKeyListener(this);
+	}
+
+	
+	@Override
+	public void actorsChanged(Actor... actors) {
+		for(Actor a : actors) {
+			Point p = a.getPosition();
+			Icon icon = getActorIcon(a);
+			int idx =  p.getRow() * _boardWidth + p.getCol();
+			JLabel label = (JLabel) this.getContentPane().getComponent(idx);
+			label.setIcon(icon);
+		}
+	}
+	
+	@Override
+	public void show(Board b) {
 		
 	}
 
@@ -78,5 +94,4 @@ public class CrypraiderSwingViewer extends JFrame implements Viewer, KeyListener
 		_game.addKey(key);
 		
 	}
-
 }

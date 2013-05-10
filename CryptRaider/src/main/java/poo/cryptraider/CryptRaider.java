@@ -35,13 +35,14 @@ public class CryptRaider {
 	
 	
 
+	private char readKey() {
+		return _input.next().charAt(0);
+	}
+	
 	public void moveActors() {
 		_board.moveActors();
 	}
 
-	private char readKey() {
-		return _input.next().charAt(0);
-	}
 
 	
 	
@@ -49,9 +50,11 @@ public class CryptRaider {
 		loadLevel(level);
 		_board.addViewers(viewers);
 		
+		_board.notifyInitLevel();
+		
+		
 		while(true) {
-			_board.showBoard();
-			moveActors();
+			_board.notifyShowBoard();
 			waitForNextFrame(1000/30);
 		}
 	}
@@ -63,8 +66,6 @@ public class CryptRaider {
 			System.exit(-1);
 		}
 	}
-
-
 
 	public boolean moveTo(Actor a, Point pos) {
 		Actor colidedActor = _board.getActor(pos);
@@ -102,5 +103,4 @@ public class CryptRaider {
 		_keys = _keys.substring(1);
 		return key;
 	}
-
 }

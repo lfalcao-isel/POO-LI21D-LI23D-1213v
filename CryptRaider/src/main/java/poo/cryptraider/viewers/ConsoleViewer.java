@@ -4,6 +4,7 @@ package poo.cryptraider.viewers;
 
 import poo.cryptraider.Board;
 import poo.cryptraider.Point;
+import poo.cryptraider.actors.Actor;
 
 public class ConsoleViewer implements Viewer {
 
@@ -22,5 +23,14 @@ public class ConsoleViewer implements Viewer {
 		System.out.println();
 
 	}
+
+	@Override
+	public void initLevel(Board board) {
+	}
+
+	@Override
+	public void actorsChanged(Actor... a) {
+	}
+
 
 }

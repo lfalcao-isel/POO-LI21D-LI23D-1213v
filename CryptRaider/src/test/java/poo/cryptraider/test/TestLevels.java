@@ -20,10 +20,11 @@ public class TestLevels {
 		// Arrange
 		CryptRaider c = new CryptRaider();
 		c.loadLevel(new RaiderArtifaColisionLevel());
+		c.addKey('d');
 		
 		
 		// Act
-		c.moveActors('d');
+		c.moveActors();
 		
 		
 		// Assert

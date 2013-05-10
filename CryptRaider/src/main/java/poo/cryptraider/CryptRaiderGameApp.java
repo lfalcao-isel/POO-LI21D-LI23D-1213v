@@ -20,7 +20,7 @@ public class CryptRaiderGameApp {
 		//c.start(new Level1());
 		String absPath = new File("").getAbsolutePath();
 		System.out.println(absPath);
-		absPath = FileSystemResourceManager.getResource("levels/Level1.txt"); 
+		absPath = FileSystemResourceManager.getResource("levels/Level2.txt"); 
 		System.out.println(absPath);
 		c.start(new FileLevel(absPath), new ConsoleViewer(), new CrypraiderSwingViewer(c));
 		

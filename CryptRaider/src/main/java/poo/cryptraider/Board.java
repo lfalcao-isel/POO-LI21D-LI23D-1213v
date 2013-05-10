@@ -44,16 +44,6 @@ public class Board {
 		
 	}
 	
-	public void showBoard() {
-		for(int i = 0; i < _numViewers; ++i) {
-			_viewers[i].show(this);
-		}
-	}
-
-
-
-	
-
 
 	public void moveActors() {
 		for(int i = 0; i < _movableActors.length; ++ i) {
@@ -77,6 +67,9 @@ public class Board {
 		
 		actorToChange.setPosition(posActor);
 		a.setPosition(pos);
+		
+		notifyActorsMoved(a, actorToChange );
+		
 		
 		putActorInBoard(a);
 		putActorInBoard(actorToChange);
@@ -108,5 +101,24 @@ public class Board {
 		}
 	}
 
+
+	public void notifyInitLevel() {
+		for(int i = 0; i < _numViewers; ++i) {
+			_viewers[i].initLevel(this);
+		}
+		
+	}
+
+	public void notifyShowBoard() {
+		for(int i = 0; i < _numViewers; ++i) {
+			_viewers[i].show(this);
+		}
+	}
+	
+	public void notifyActorsMoved(Actor... a) {
+		for(int i = 0; i < _numViewers; ++i) {
+			_viewers[i].actorsChanged(a);
+		}
+	}
 
 }
