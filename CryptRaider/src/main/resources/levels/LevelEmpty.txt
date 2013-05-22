@@ -1,0 +1,25 @@
+12 18 
+##################
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+##################
+
+
+C Carter
+# Wall
+$ Stone
+* Sand
+A Artifact
+P Portal
+B Bug
+K Key
+D Door
+B Bomb

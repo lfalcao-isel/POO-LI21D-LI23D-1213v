@@ -5,16 +5,14 @@ import poo.cryptraider.actors.MovableActor;
 import poo.cryptraider.viewers.Viewer;
 
 public class Board {
-	Actor[][] _actorsBoard;
-	MovableActor[] _movableActors;
-	private Viewer[] _viewers = new Viewer[10];
-	private int _numViewers = 0;
+	Actor[][] _actors;
+	MovableActor[] _movableActors;	
 	
 	private int getMovablesNumber(Actor[][] actors) {
 		int movables = 0;
-		for(int row = 0; row < _actorsBoard.length; ++ row) {
-			for(int col = 0; col < _actorsBoard[0].length; ++ col) {
-				if(_actorsBoard[row][col] instanceof MovableActor)
+		for(int row = 0; row < _actors.length; ++ row) {
+			for(int col = 0; col < _actors[0].length; ++ col) {
+				if(_actors[row][col] instanceof MovableActor)
 					++movables;
 			}
 		}
@@ -23,17 +21,17 @@ public class Board {
 	
 	
 	public Board(Actor[][] actors) {
-		_actorsBoard = actors;
+		_actors = actors;
 		
 		int movables = getMovablesNumber(actors);
 		
 		_movableActors = new MovableActor[movables];
 		
-		int width = _actorsBoard[0].length;
+		int width = _actors[0].length;
 		int idx = 0;
-		for(int row = 0; row < _actorsBoard.length; ++ row) {
+		for(int row = 0; row < _actors.length; ++ row) {
 			for(int col = 0; col < width; ++ col) {
-				Actor a = _actorsBoard[row][col];
+				Actor a = _actors[row][col];
 				if(a instanceof MovableActor) {
 					_movableActors[idx++] = (MovableActor)a;
 				}
@@ -56,7 +54,7 @@ public class Board {
 	}
 	
 	public Actor getActor(int row, int col) {
-		return _actorsBoard[row][col];
+		return _actors[row][col];
 	}
 
 
@@ -68,7 +66,7 @@ public class Board {
 		actorToChange.setPosition(posActor);
 		a.setPosition(pos);
 		
-		notifyActorsMoved(a, actorToChange );
+		notifyActorsMoved(a, actorToChange);
 		
 		
 		putActorInBoard(a);
@@ -79,46 +77,18 @@ public class Board {
 
 	public void putActorInBoard(Actor a) {
 		Point pos = a.getPosition();
-		_actorsBoard[pos.getRow()][pos.getCol()] = a;
+		_actors[pos.getRow()][pos.getCol()] = a;
 	}
 
 
 
 
 	public int getWidth() {
-		return _actorsBoard[0].length;
+		return _actors[0].length;
 	}
 
 
 	public int getHeigh() {
-		return _actorsBoard.length;
+		return _actors.length;
 	}
-
-
-	public void addViewers(Viewer[] viewers) {
-		for(int i = 0; i < viewers.length; ++i) {
-			_viewers[_numViewers++] = viewers[i];
-		}
-	}
-
-
-	public void notifyInitLevel() {
-		for(int i = 0; i < _numViewers; ++i) {
-			_viewers[i].initLevel(this);
-		}
-		
-	}
-
-	public void notifyShowBoard() {
-		for(int i = 0; i < _numViewers; ++i) {
-			_viewers[i].show(this);
-		}
-	}
-	
-	public void notifyActorsMoved(Actor... a) {
-		for(int i = 0; i < _numViewers; ++i) {
-			_viewers[i].actorsChanged(a);
-		}
-	}
-
 }

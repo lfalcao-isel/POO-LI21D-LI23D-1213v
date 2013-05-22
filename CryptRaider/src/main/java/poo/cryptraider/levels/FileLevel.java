@@ -1,8 +1,11 @@
 package poo.cryptraider.levels;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 import static java.lang.System.*;
 
@@ -23,18 +26,19 @@ public class FileLevel extends Level {
 	//@Override
 	protected String[] getLevel() throws CryptRaiderException {
 		try {
-			java.io.BufferedReader reader = new BufferedReader(
-				new FileReader(_filePath)
-			);
+			Scanner s = new Scanner(new FileInputStream(_filePath));
 			
-			String line = reader.readLine();
-			int numlines = Integer.parseInt(line);
-			String []lines = new String[numlines];
+			int numLines = s.nextInt();
+			int numCols = s.nextInt();
+			s.nextLine();
+
+			String []lines = new String[numLines];
 			
-			for(int i = 0; i < numlines; ++i) {
-				lines[i] = reader.readLine();
+			for(int i = 0; i < numLines; ++i) {
+				lines[i] = s.nextLine().substring(0, numCols);
  			}
 			
+			s.close();
 			return lines;
 			
 		} catch (IOException e) {

@@ -1,6 +1,7 @@
 package poo.cryptraider.viewers;
 
 import poo.cryptraider.Board;
+import poo.cryptraider.CryptRaider;
 import poo.cryptraider.actors.Actor;
 
 /**
@@ -10,19 +11,26 @@ import poo.cryptraider.actors.Actor;
  *
  */
 public interface Viewer {
+	/**
+	 * Indicates the game is initializing
+	 * 
+	 * @param game The CryptRaider game instance
+	 */
+	void initGame(CryptRaider g);
 	
 	/**
-	 * Show the CryptRayder board for the b board.
+	 * Updates the CryptRayder game.
 	 * 
-	 * @param b The board to be shown
+	 * @param game The CryptRaider game instance
 	 */
-	void show(Board b);
+	void update(CryptRaider g);
 
 	/**
 	 * Called when a new level is loaded
-	 * @param _board
+	 * 
+	 * @param game The CryptRaider game instance
 	 */
-	void initLevel(Board board);
+	void initLevel(CryptRaider game);
 
 	/**
 	 * Method called when the given actor moves.
@@ -31,4 +39,6 @@ public interface Viewer {
 	 * The actor already is in its new position.
 	 */
 	void actorsChanged(Actor... a);
+
+	
 }

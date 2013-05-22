@@ -19,7 +19,7 @@ public class Carter extends MovableActor {
 			case CryptRaider.DOWN : _direction = DOWN_DIR; break;
 			case CryptRaider.LEFT : _direction = LEFT_DIR; break;
 			case CryptRaider.RIGHT : _direction = RIGHT_DIR; break;
-			default: _direction = NO_DIR;
+			default: return;
 		}
 
 		Point pos = _pos.add(_direction);

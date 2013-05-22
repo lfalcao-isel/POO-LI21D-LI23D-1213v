@@ -3,13 +3,15 @@ package poo.cryptraider.viewers;
 
 
 import poo.cryptraider.Board;
+import poo.cryptraider.CryptRaider;
 import poo.cryptraider.Point;
 import poo.cryptraider.actors.Actor;
 
 public class ConsoleViewer implements Viewer {
 
 	@Override
-	public void show(Board board) {
+	public void update(CryptRaider game) {
+		Board board = game.getBoard();
 		int width = board.getWidth();
 		int height = board.getHeigh();
 		
@@ -25,11 +27,17 @@ public class ConsoleViewer implements Viewer {
 	}
 
 	@Override
-	public void initLevel(Board board) {
+	public void initLevel(CryptRaider game) {
+		
 	}
 
 	@Override
 	public void actorsChanged(Actor... a) {
+	}
+
+	@Override
+	public void initGame(CryptRaider g) {
+		
 	}
 
 

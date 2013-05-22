@@ -24,13 +24,22 @@ public class CrypraiderSwingViewer extends JFrame implements Viewer, KeyListener
 		_game = game;
 	}
 	
-	public void initLevel(Board b) {
+	@Override
+	public void initGame(CryptRaider g) {
+		Board b = g.getBoard();
 		int rows = b.getHeigh();
 		int cols = _boardWidth = b.getWidth();
 		
 		
 		setTitle("Cryptraider Glorioso!");
 		setLayout(new GridLayout(rows, cols));
+		initLevel(g);
+	}
+	
+	public void initLevel(CryptRaider game) {
+		Board b = game.getBoard();
+		int rows = b.getHeigh();
+		int cols = _boardWidth = b.getWidth();
 		
 		
 		for(int row = 0; row < rows; ++row) {
@@ -62,7 +71,7 @@ public class CrypraiderSwingViewer extends JFrame implements Viewer, KeyListener
 	}
 	
 	@Override
-	public void show(Board b) {
+	public void update(CryptRaider game) {
 		
 	}
 
@@ -94,4 +103,5 @@ public class CrypraiderSwingViewer extends JFrame implements Viewer, KeyListener
 		_game.addKey(key);
 		
 	}
+
 }
