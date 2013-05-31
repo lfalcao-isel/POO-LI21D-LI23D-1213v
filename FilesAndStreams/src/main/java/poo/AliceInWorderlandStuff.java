@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class AliceInWorderlandStuff {
 	static int countWord(String path, String word) throws IOException {
@@ -74,6 +77,8 @@ public class AliceInWorderlandStuff {
 		System.out.println(count);
 	}
 
+	
+	
 	private static void copyLinesWithWord(String srcFile,
 			String destinationFile, String word) throws IOException {
 		word = word.toLowerCase();
@@ -104,4 +109,46 @@ public class AliceInWorderlandStuff {
 			closeFile(wr);
 		}
 	}
+	
+	private static Collection<String> getLinesWithWord(String srcFile,
+			String destinationFile, String word) throws IOException {
+		word = word.toLowerCase();
+		FileReader src = null;
+		FileWriter dest = null;
+		PrintWriter wr = null;
+		
+		
+		ArrayList<String> lines = new ArrayList<String>();
+		
+
+		
+		try {
+			src = new FileReader(srcFile);
+			BufferedReader br = new BufferedReader(src);
+		
+			dest = new FileWriter(destinationFile);
+			
+			wr = new PrintWriter(dest);
+			
+			
+			String line;
+			while((line = br.readLine()) != null) {
+				String lowerwedLine = line.toLowerCase();
+				int idx = lowerwedLine.indexOf(word);
+				if(idx != -1) {
+					// String was found
+					lines.add(line);
+					
+				}
+			}
+		} catch (IOException e) {
+			System.out.println(e.toString());
+		} finally {
+			closeFile(src);
+			closeFile(wr);
+			return lines;
+		}
+	}
+	
+	
 }
