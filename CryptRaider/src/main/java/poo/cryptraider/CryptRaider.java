@@ -26,7 +26,7 @@ public class CryptRaider {
 	Board _board;
 	String _keys = "";
 	
-	private Viewer[] _viewers;
+	private Viewer[] _viewers = new Viewer[0];
 	
 	
 	Scanner _input = new Scanner(System.in);
@@ -132,6 +132,7 @@ public class CryptRaider {
 	
 
 	public void changeActor(Actor a, Point pos) {
+		Actor actorToChange = getActor(pos);
 		_board.changeActor(a, pos);
 		fireActorsMoved(a, actorToChange);
 		

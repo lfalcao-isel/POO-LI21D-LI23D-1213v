@@ -66,9 +66,6 @@ public class Board {
 		actorToChange.setPosition(posActor);
 		a.setPosition(pos);
 		
-		notifyActorsMoved(a, actorToChange);
-		
-		
 		putActorInBoard(a);
 		putActorInBoard(actorToChange);
 		
