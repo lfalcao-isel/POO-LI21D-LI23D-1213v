@@ -1,6 +1,7 @@
 package poo;
 
 import java.util.AbstractCollection;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -19,7 +20,7 @@ public class PooArrayList<T> extends AbstractCollection<T> {
 		@Override
 		public T next() {
 			if(hasNext())
-				return (T)_array[_currPos];
+				return (T)_array[_currPos++];
 			throw new NoSuchElementException();	
 		}
 
@@ -27,7 +28,7 @@ public class PooArrayList<T> extends AbstractCollection<T> {
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
-		
+
 	}
 	
 	
@@ -38,24 +39,47 @@ public class PooArrayList<T> extends AbstractCollection<T> {
 	
 	
 	private void removeAtIndex(int i) {
-		// TODO
-		
-		--_currIdx;
+		for(; i < _currIdx -1; ++i) {
+			_array[i] = _array[i+1];
+		}
+		_array[--_currIdx] = null;
 	}
 
-	
-	
-	public PooArrayList() {
-		_array = new Object[DEFAULT_SIZE];
-		_sizeIncrement = DEFAULT_SIZE;
-	}
-	
-	public PooArrayList(int size) {
+	private void createArray(int size) {
 		_array = new Object[size];
 		_sizeIncrement = size;
 	}
 	
+	private void addAll(Iterator<T> iter) {
+		while(iter.hasNext()) {
+			add(iter.next());
+		}
+	}
 	
+	
+	public PooArrayList() {
+		createArray(DEFAULT_SIZE);
+	}
+	
+	public PooArrayList(int size) {
+		createArray(size);
+	}
+	
+	
+	public PooArrayList(Collection<T> coll) 
+	{
+		//this((T[])coll.toArray());
+		createArray(coll.size()+DEFAULT_SIZE);
+		addAll(coll.iterator());
+	}
+	
+	public PooArrayList(T[] array) {
+		createArray(array.length+DEFAULT_SIZE);
+		addAll(new IteratorArray<T>(array));
+	}
+
+
+
 	@Override
 	public boolean add(T elem) {
 		if(_currIdx == _array.length) {
@@ -94,5 +118,4 @@ public class PooArrayList<T> extends AbstractCollection<T> {
 	public int size() {
 		return _currIdx;
 	}
-
 }
