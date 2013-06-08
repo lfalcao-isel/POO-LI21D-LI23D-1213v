@@ -2,12 +2,17 @@ package poo;
 
 import java.util.AbstractCollection;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 
-public class PooArrayList<T> extends AbstractCollection<T> {
-	private class PooArrayListIterator<T> implements Iterator<T> {
+
+
+public class PooArrayList<T> extends AbstractCollection<T> implements List<T> {
+	private class PooArrayListIterator implements Iterator<T> {
 		private int _currPos = 0;
 		
 		
@@ -30,7 +35,6 @@ public class PooArrayList<T> extends AbstractCollection<T> {
 		}
 
 	}
-	
 	
 	private static final int DEFAULT_SIZE = 20;
 	private Object[] _array; 
@@ -111,11 +115,84 @@ public class PooArrayList<T> extends AbstractCollection<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		return new PooArrayListIterator<T>();
+		return new PooArrayListIterator();
 	}
 
 	@Override
 	public int size() {
 		return _currIdx;
+	}
+
+	public boolean contains(T elemeToFind, Comparator<T> comparator) {
+		Iterator<T> iter = iterator();
+		while(iter.hasNext()) {
+			if(comparator.compare(iter.next(), elemeToFind) == 0) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public void add(int arg0, T arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean addAll(int arg0, Collection<? extends T> arg1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public T get(int idx) {
+		if(idx >= _currIdx) {
+			throw new IndexOutOfBoundsException();
+		}
+		return (T)_array[idx];
+	}
+
+	@Override
+	public int indexOf(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int lastIndexOf(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ListIterator<T> listIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ListIterator<T> listIterator(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public T remove(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public T set(int arg0, T arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<T> subList(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

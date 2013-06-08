@@ -1,17 +1,25 @@
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
-import poo.CollectionUtils;
+
 import poo.PooArrayList;
+import poo.PooLinkedList;
 
 
-public class PooArrayListTests {
+public class PooLinkedListTests {
 	
-	private PooArrayList<Car> createCarList() {
-		PooArrayList<Car> list = new PooArrayList<>();
+	private static final String STR = "aaa";
+
+
+
+	private PooLinkedList<Car> createCarList() {
+		PooLinkedList<Car> list = new PooLinkedList<Car>();
+		
 		list.add(new Car("Ferrari", 2013));
 		list.add(new Car("Porshe", 2012));
 		list.add(new Car("Smart", 2010));
@@ -24,8 +32,8 @@ public class PooArrayListTests {
 	// Private auxiliary methods
 	//
 	private void removeElement(String toRemove, boolean expectedResult, int listSize) {
-		String []arrayStr = new String[] { "aaa", "bbb", "ccc" };
-		PooArrayList<String> list = new PooArrayList<String>( arrayStr );
+		String []arrayStr = new String[] { STR, "bbb", "ccc" };
+		PooLinkedList<String> list = new PooLinkedList<String>(null);
 		
 		
 		// Act
@@ -41,13 +49,33 @@ public class PooArrayListTests {
 		removeElement(toRemove, true, 2);
 	}
 	
+
 	//
-	// Tests for 
+	// Tests for add
+	//
+	
+	@Test
+	public void shouldAddForAnEmptyCollection() {
+		// Arrange
+		List<String> coll = new PooLinkedList<String>();
+		
+		// Act
+		coll.add(STR);
+		
+		// Assert
+		Assert.assertEquals(1, coll.size());
+		Assert.assertEquals(1, coll.contains(STR));
+		Assert.assertEquals(STR, coll.get(0));
+	}
+
+	
+	//
+	// Tests for remove
 	//
 	
 	@Test
 	public void shouldRemoveAtTheFirstPosition() {
-		removeElement("aaa");
+		removeElement(STR);
 	}
 	
 	@Test
@@ -72,7 +100,7 @@ public class PooArrayListTests {
 	@Test
 	public void shouldContainAPorshe() {
 		// Arrange
-		PooArrayList<Car> list = createCarList();
+		PooLinkedList<Car> list = createCarList();
 		Car porshe = new Car("Porshe", 11);
 				
 		// Act
@@ -84,27 +112,13 @@ public class PooArrayListTests {
 //				return car1.getBrand().compareTo(car2.getBrand());
 //			}
 //		};
-		
-		Comparator<Car> myComparator = 	new MyCarComparator();
-
-		boolean res = list.contains(porshe, myComparator);
+		boolean res = list.contains(porshe);
 		
 		// Assert
 		Assert.assertTrue(res);
-		
-		new CollectionUtils().max(list, null);
 	}
-	
-	
-	
 	
 	
 
-	private class MyCarComparator implements Comparator<Car> {
-		@Override
-		public int compare(Car car1, Car car2) {
-			return car1.getBrand().compareTo(car2.getBrand());
-		}
 	
-	}
 }
